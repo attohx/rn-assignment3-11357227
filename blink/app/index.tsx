@@ -1,13 +1,5 @@
-import React, {useState} from 'react';
-import {
-  Text,
-  View,
-  TextInput,
-  StyleSheet,
-  FlatList,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import React, { useState } from 'react';
+import { Text, View, TextInput, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
 
 const data = [
   { id: '1', text: 'Mobile Development' },
@@ -39,11 +31,10 @@ const data2 = [
 ];
 
 export default function Index() {
-
   const [searchQuery, setSearchQuery] = useState('');
-  const handleSearch =() => {
 
-    console.log('Searching for:',searchQuery);
+  const handleSearch = () => {
+    console.log('Searching for:', searchQuery);
   };
 
   const renderCategoryItem = ({ item }) => (
@@ -63,11 +54,10 @@ export default function Index() {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.heading}>Hello Devs,</Text>
+        <Image source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }} style={styles.headerImage} />
+      </View>
+      <View>
         <Text>14 tasks today</Text>
-        <Image
-          source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }}
-          style={styles.headerImage}
-        />
       </View>
 
       <View style={styles.searchContainer}>
@@ -94,10 +84,10 @@ export default function Index() {
           contentContainerStyle={styles.horizontalList}
         />
       </View>
-      
+
       <Text style={styles.subheading}>Ongoing</Text>
 
-      <FlatList 
+      <FlatList
         data={data}
         renderItem={renderItem}
         keyExtractor={item => item.id}
@@ -116,6 +106,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f7f0e8',
     marginBottom: 20,
   },
+
   container2: {
     height: 186,
     width: '100%',
@@ -134,7 +125,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     marginBottom: 16,
   },
   heading: {
@@ -159,20 +150,21 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     paddingLeft: 8,
-    marginBottom: 16,
-    marginRight: 60,
+    marginRight: 10, // Added margin to the right to separate from the button
   },
 
   searchButton: {
     height: 50,
     backgroundColor: 'grey',
-    marginBottom: 16,
     borderRadius: 5,
-    alignItems: 'center', 
-    justifyContent: 'center', 
-    width: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 10, // Added padding to the button for better visual
   },
 
+  searchButtonText: {
+    color: 'white',
+  },
 
   list: {
     width: '100%',
