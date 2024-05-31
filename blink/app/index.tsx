@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Text,
   View,
@@ -6,6 +6,7 @@ import {
   StyleSheet,
   FlatList,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 
 const data = [
@@ -38,10 +39,17 @@ const data2 = [
 ];
 
 export default function Index() {
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const handleSearch =() => {
+
+    console.log('Searching for:',searchQuery);
+  };
+
   const renderCategoryItem = ({ item }) => (
     <View style={styles.categoryItem}>
-      <Image source={{ uri: item.uri }} style={styles.categoryImage} />
       <Text style={styles.categoryText}>{item.text}</Text>
+      <Image source={{ uri: item.uri }} style={styles.categoryImage} />
     </View>
   );
 
@@ -62,19 +70,31 @@ export default function Index() {
         />
       </View>
 
-      <TextInput style={styles.input} placeholder="Search" />
+      <View style={styles.searchContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Search"
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+        />
+        <TouchableOpacity style={styles.searchButton} onPress={handleSearch}>
+          <Text style={styles.searchButtonText}>Search</Text>
+        </TouchableOpacity>
+      </View>
 
       <Text style={styles.subheading}>Categories</Text>
 
-      <FlatList
-        data={data2}
-        renderItem={renderCategoryItem}
-        keyExtractor={item => item.id}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.horizontalList}
-      />
-
+      <View style={styles.container2}>
+        <FlatList
+          data={data2}
+          renderItem={renderCategoryItem}
+          keyExtractor={item => item.id}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.horizontalList}
+        />
+      </View>
+      
       <Text style={styles.subheading}>Ongoing</Text>
 
       <FlatList 
@@ -94,10 +114,23 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     padding: 16,
     backgroundColor: '#f7f0e8',
+    marginBottom: 20,
   },
   container2: {
-    // Add styles for categories container if needed
+    height: 186,
+    width: '100%',
+    justifyContent: 'space-between',
   },
+
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between', // Aligns items with equal space between them
+    marginBottom: 10,
+    marginTop: 10,
+    height: 50,
+  },
+
   header: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -119,14 +152,28 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 20,
   },
+
   input: {
-    height: 40,
+    flex: 1,
+    height: 50,
     borderColor: 'gray',
     borderWidth: 1,
     paddingLeft: 8,
     marginBottom: 16,
-    width: '100%',
+    marginRight: 60,
   },
+
+  searchButton: {
+    height: 50,
+    backgroundColor: 'grey',
+    marginBottom: 16,
+    borderRadius: 5,
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    width: 60,
+  },
+
+
   list: {
     width: '100%',
     marginBottom: 16,
@@ -166,17 +213,10 @@ const styles = StyleSheet.create({
     height: 100,
     marginBottom: 10,
     borderRadius: 50,
-    position: 'absolute',
-    top: 10,
-    left: 43,
   },
   categoryText: {
     fontSize: 16,
     color: '#333',
-    position: 'absolute',
-    bottom: 10,
-    left: 10,
-    right: 10,
-    textAlign: 'center',
+    marginBottom: 10,
   },
 });
