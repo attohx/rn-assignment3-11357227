@@ -1,16 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, TextInput, StyleSheet, FlatList, Image, TouchableOpacity, ScrollView } from 'react-native';
-
-const categories = [
-  { id: '1', text: 'Mobile Development', image: 'https://reactnative.dev/img/tiny_logo.png' },
-  { id: '2', text: 'Web Development', image: 'https://reactnative.dev/img/tiny_logo.png' },
-  { id: '3', text: 'Ai Development', image: 'https://reactnative.dev/img/tiny_logo.png' },
-  { id: '5', text: 'Node Files', image: 'https://reactnative.dev/img/tiny_logo.png' },
-  { id: '6', text: 'Coding Resources', image: 'https://reactnative.dev/img/tiny_logo.png' },
-  { id: '7', text: 'Site Resources', image: 'https://reactnative.dev/img/tiny_logo.png' },
-  { id: '8', text: 'Ios Resources', image: 'https://reactnative.dev/img/tiny_logo.png' },
-
-];
+import { Text, View, TextInput, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
 
 const data = [
   { id: '1', text: 'Mobile Development' },
@@ -30,6 +19,16 @@ const data = [
   { id: '15', text: 'Finance Database Readjustment' },
 ];
 
+const data2 = [
+  { id: '1', text: 'Exercise', uri: 'https://reactnative.dev/img/tiny_logo.png' },
+  { id: '2', text: 'Study', uri: 'https://reactnative.dev/img/tiny_logo.png' },
+  { id: '3', text: 'Missions', uri: 'https://reactnative.dev/img/tiny_logo.png' },
+  { id: '4', text: 'Database', uri: 'https://reactnative.dev/img/tiny_logo.png' },
+  { id: '5', text: 'Research', uri: 'https://reactnative.dev/img/tiny_logo.png' },
+  { id: '6', text: 'Coding', uri: 'https://reactnative.dev/img/tiny_logo.png' },
+  { id: '7', text: 'Site Files', uri: 'https://reactnative.dev/img/tiny_logo.png' },
+  { id: '8', text: 'Context', uri: 'https://reactnative.dev/img/tiny_logo.png' },
+];
 
 export default function Index() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -38,12 +37,11 @@ export default function Index() {
     console.log('Searching for:', searchQuery);
   };
 
-
-const renderCategoryItem = ({ item }) => (
-    <TouchableOpacity style={styles.categoryItem}>
-      <Image source={{ uri: item.image }} style={styles.categoryImage} />
+  const renderCategoryItem = ({ item }) => (
+    <View style={styles.categoryItem}>
       <Text style={styles.categoryText}>{item.text}</Text>
-    </TouchableOpacity>
+      <Image source={{ uri: item.uri }} style={styles.categoryImage} />
+    </View>
   );
 
   const renderItem = ({ item }) => (
@@ -77,18 +75,14 @@ const renderCategoryItem = ({ item }) => (
       <Text style={styles.subheading}>Categories</Text>
 
       <View style={styles.container2}>
-
-      <ScrollView horizontal style={styles.horizontalList}>
         <FlatList
-          data={categories}
+          data={data2}
           renderItem={renderCategoryItem}
           keyExtractor={item => item.id}
           horizontal
           showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.horizontalList}
         />
-      </ScrollView>
-
-      
       </View>
 
       <Text style={styles.subheading}>Ongoing</Text>
