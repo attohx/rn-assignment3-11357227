@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { Text, View, TextInput, StyleSheet, FlatList, Image, TouchableOpacity, ScrollView } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons'; // Import the icon library
+
 
 const categories = [
-  { id: '1', text: 'Mobile Development', image: 'https://reactnative.dev/img/tiny_logo.png' },
-  { id: '2', text: 'Web Development', image: 'https://reactnative.dev/img/tiny_logo.png' },
-  { id: '3', text: 'Ai Development', image: 'https://reactnative.dev/img/tiny_logo.png' },
-  { id: '5', text: 'Node Files', image: 'https://reactnative.dev/img/tiny_logo.png' },
-  { id: '6', text: 'Coding Resources', image: 'https://reactnative.dev/img/tiny_logo.png' },
-  { id: '7', text: 'Site Resources', image: 'https://reactnative.dev/img/tiny_logo.png' },
-  { id: '8', text: 'Ios Resources', image: 'https://reactnative.dev/img/tiny_logo.png' },
-
+  { id: '1', text: 'Mobile Development', subtext: '12 tasks', image: 'https://reactnative.dev/img/tiny_logo.png' },
+  { id: '2', text: 'Web Development', subtext: '12 tasks', image: 'https://reactnative.dev/img/tiny_logo.png' },
+  { id: '3', text: 'AI Development', subtext: '12 tasks', image: 'https://reactnative.dev/img/tiny_logo.png' },
+  { id: '5', text: 'Node Files', subtext: '12 tasks', image: 'https://reactnative.dev/img/tiny_logo.png' },
+  { id: '6', text: 'Coding Resources', subtext: '12 tasks', image: 'https://reactnative.dev/img/tiny_logo.png' },
+  { id: '7', text: 'Site Resources', subtext: '12 tasks', image: 'https://reactnative.dev/img/tiny_logo.png' },
+  { id: '8', text: 'iOS Resources', subtext: '12 tasks', image: 'https://reactnative.dev/img/tiny_logo.png' },
 ];
 
 const data = [
@@ -30,7 +31,6 @@ const data = [
   { id: '15', text: 'Finance Database Readjustment' },
 ];
 
-
 export default function Index() {
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -38,11 +38,13 @@ export default function Index() {
     console.log('Searching for:', searchQuery);
   };
 
-
-const renderCategoryItem = ({ item }) => (
+  const renderCategoryItem = ({ item }) => (
     <TouchableOpacity style={styles.categoryItem}>
+      <View style={styles.categoryTextContainer}>
+        <Text style={styles.categoryText}>{item.text}</Text>
+        <Text style={styles.categorySubText}>{item.subtext}</Text>
+      </View>
       <Image source={{ uri: item.image }} style={styles.categoryImage} />
-      <Text style={styles.categoryText}>{item.text}</Text>
     </TouchableOpacity>
   );
 
@@ -56,7 +58,7 @@ const renderCategoryItem = ({ item }) => (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.heading}>Hello, Devs</Text>
-        <Image source={require('./assets/images/profile.png')} style={styles.headerImage} />
+        <Image source={require('../assets/images/profile.png')} style={styles.headerImage} />
       </View>
       <View style={styles.miniHeader}>
         <Text>14 tasks today</Text>
@@ -65,30 +67,27 @@ const renderCategoryItem = ({ item }) => (
       <View style={styles.searchContainer}>
         <TextInput
           style={styles.input}
-          placeholder="Search"
+          placeholder="&#x1F50D search"
           value={searchQuery}
           onChangeText={setSearchQuery}
         />
         <TouchableOpacity style={styles.searchButton} onPress={handleSearch}>
-          <Text style={styles.searchButtonText}>Search</Text>
+          <Icon name="options-outline" size={30} color="#FFFFFF"/>
         </TouchableOpacity>
       </View>
 
       <Text style={styles.subheading}>Categories</Text>
 
       <View style={styles.container2}>
-
-      <ScrollView horizontal style={styles.horizontalList}>
-        <FlatList
-          data={categories}
-          renderItem={renderCategoryItem}
-          keyExtractor={item => item.id}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        />
-      </ScrollView>
-
-      
+        <ScrollView horizontal style={styles.horizontalList}>
+          <FlatList
+            data={categories}
+            renderItem={renderCategoryItem}
+            keyExtractor={item => item.id}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+          />
+        </ScrollView>
       </View>
 
       <Text style={styles.subheading}>Ongoing</Text>
@@ -101,7 +100,6 @@ const renderCategoryItem = ({ item }) => (
           contentContainerStyle={styles.list}
         />
       </View>
-      
     </View>
   );
 }
@@ -115,49 +113,53 @@ const styles = StyleSheet.create({
     backgroundColor: '#f7f0e8',
     marginBottom: 20,
   },
-
   container2: {
-    height: 180,
+    height: 220,
     width: '100%',
     justifyContent: 'space-between',
   },
-
   container3: {
     height: 180,
     width: '100%',
     justifyContent: 'space-between',
   },
-
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between', // Aligns items with equal space between them
+    justifyContent: 'space-between',
     marginBottom: 10,
     marginTop: 10,
     height: 50,
   },
 
+  searchIcon: {
+    position: 'absolute',
+    left: 15,
+    zIndex: 1,
+
+  },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between', // Aligns items with space between them
+    justifyContent: 'space-between',
     marginBottom: -8,
-    marginTop: 10,
-    width: '100%', // Ensure the header occupies the full width
+    marginTop: 50,
+    width: '100%',
   },
-
   miniHeader: {
     marginBottom: 10,
   },
-
   heading: {
     fontSize: 24,
     fontWeight: 'bold',
     marginRight: 8,
   },
   headerImage: {
-    width: 30,
-    height: 30,
+    marginTop: 10,
+    width: 50,
+    height: 52,
+    borderRadius: 20,
+    backgroundColor: '#ffffff',
   },
   subheading: {
     fontSize: 18,
@@ -165,29 +167,24 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 20,
   },
-
   input: {
     flex: 1,
     height: 50,
     borderColor: 'gray',
     borderWidth: 1,
     paddingLeft: 8,
-    marginRight: 10, // Added margin to the right to separate from the button
+    marginRight: 10,
+    borderRadius: 10,
   },
-
   searchButton: {
     height: 50,
-    backgroundColor: 'grey',
-    borderRadius: 5,
+    backgroundColor: '#F0522F',
+    borderRadius: 15,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 10, // Added padding to the button for better visual
+    paddingHorizontal: 10,
   },
-
-  searchButtonText: {
-    color: 'white',
-  },
-
+  
   list: {
     width: '100%',
     marginBottom: 16,
@@ -198,10 +195,10 @@ const styles = StyleSheet.create({
     height: 128,
     width: 354,
     borderRadius: 10,
-    backgroundColor: '#ffffff', // Background color
+    backgroundColor: '#ffffff',
     marginBottom: 10,
     justifyContent: 'center',
-    alignItems: 'left',
+    alignItems: 'flex-start',
     left: 20,
   },
   text: {
@@ -217,21 +214,28 @@ const styles = StyleSheet.create({
     marginRight: 10,
     borderRadius: 10,
     backgroundColor: '#ffffff',
-    justifyContent: 'left',
-    alignItems: 'left',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
     padding: 10,
-    position: 'relative', // Needed for absolute positioning
+  },
+  categoryTextContainer: {
+    flex: 1,
+    marginRight: 10,
   },
   categoryImage: {
     width: 100,
     height: 100,
-    marginBottom: 5,
     borderRadius: 10,
-    justifyContent: 'right',
+    alignSelf: 'flex-end',
   },
   categoryText: {
     fontSize: 16,
     color: '#333',
+    marginBottom: 5,
+  },
+  categorySubText: {
+    fontSize: 14,
+    color: '#666',
     marginBottom: 10,
   },
 });
