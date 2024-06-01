@@ -175,6 +175,7 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
     marginRight: 10,
     borderRadius: 10,
+    backgroundColor: '#ffffff',
   },
   searchButton: {
     height: 50,
