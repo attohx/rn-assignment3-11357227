@@ -4,10 +4,10 @@ import Icon from 'react-native-vector-icons/Ionicons'; // Import the icon librar
 
 
 const categories = [
-  { id: '1', text: 'Mobile Development', subtext: '12 tasks', image: 'https://reactnative.dev/img/tiny_logo.png' },
-  { id: '2', text: 'Web Development', subtext: '12 tasks', image: 'https://reactnative.dev/img/tiny_logo.png' },
+  { id: '1', text: 'Exercise', subtext: '12 tasks', image: 'https://reactnative.dev/img/tiny_logo.png' },
+  { id: '2', text: 'Study', subtext: '12 tasks', image: 'https://reactnative.dev/img/tiny_logo.png' },
   { id: '3', text: 'AI Development', subtext: '12 tasks', image: 'https://reactnative.dev/img/tiny_logo.png' },
-  { id: '5', text: 'Node Files', subtext: '12 tasks', image: 'https://reactnative.dev/img/tiny_logo.png' },
+  { id: '5', text: 'Node Curation', subtext: '12 tasks', image: 'https://reactnative.dev/img/tiny_logo.png' },
   { id: '6', text: 'Coding Resources', subtext: '12 tasks', image: 'https://reactnative.dev/img/tiny_logo.png' },
   { id: '7', text: 'Site Resources', subtext: '12 tasks', image: 'https://reactnative.dev/img/tiny_logo.png' },
   { id: '8', text: 'iOS Resources', subtext: '12 tasks', image: 'https://reactnative.dev/img/tiny_logo.png' },
@@ -67,7 +67,7 @@ export default function Index() {
       <View style={styles.searchContainer}>
         <TextInput
           style={styles.input}
-          placeholder="&#x1F50D search"
+          placeholder="search"
           value={searchQuery}
           onChangeText={setSearchQuery}
         />
