@@ -53,8 +53,8 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.heading}>Hello Devs,</Text>
-        <Image source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }} style={styles.headerImage} />
+        <Text style={styles.heading}>Hello, Devs </Text>
+        <Image source={{ uri: './profile.png' }} style={styles.headerImage} />
       </View>
       <View style={styles.miniHeader}>
         <Text>14 tasks today</Text>
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
 
   searchButton: {
     height: 50,
-    backgroundColor: 'grey',
+    background: '#f0522f',
     borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center',

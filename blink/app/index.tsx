@@ -55,8 +55,8 @@ const renderCategoryItem = ({ item }) => (
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.heading}>Hello Devs,</Text>
-        <Image source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }} style={styles.headerImage} />
+        <Text style={styles.heading}>Hello, Devs</Text>
+        <Image source={require('./assets/images/profile.png')} style={styles.headerImage} />
       </View>
       <View style={styles.miniHeader}>
         <Text>14 tasks today</Text>
