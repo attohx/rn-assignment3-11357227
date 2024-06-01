@@ -16,17 +16,22 @@ This project is based on creating an UI for an app that focuses on organization,
 	Used to display components and apply styles
 
 - StyleSheet
-	Custom styles for the components added. 
+	Used this to add custom styles for the components added. 
 
 - TouchableOpacity
 	Makes items in the category text touchable or gives visual feedback to user when an Item is touched.
 
 - Image 
-	Used to display images in the UI
+	Used this to display images in the UI
 
 - Text
-	Renders text out. 
-	
+	Renders text out. and allows styling
+
+- Icon
+	Imported icons to be used for the search button svg
+
+
+
 ## Authors
 
 - Nathan Attoh - 11357227
