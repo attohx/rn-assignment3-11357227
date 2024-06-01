@@ -39,5 +39,5 @@ This project is based on creating an UI for an app that focuses on organization,
 
 ## Screenshots
 
-![App Screenshot](./shot1.png)
+![App Screenshot](./shot.png)
 
